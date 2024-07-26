@@ -8,10 +8,13 @@ const ObjectDetectResult = () => {
     const navigate = useNavigate();
     const fetchDetectResults = async () => {
         const results = await history.fetchDetectResults()
-        console.log(results)
+
         setResults(results)
     }
     const formatDatetime = (datetime) => datetime.split('T').join(' ')
+    const handleClickViewCCTV = () => {
+        navigate('/subscriber')
+    }
     const handleClickUpload = () => {
         navigate('/upload')
     }
@@ -25,6 +28,7 @@ const ObjectDetectResult = () => {
         <div>
             <h2>탐지 결과</h2>
             <button onClick={handleClickUpload}>이미지 업로드</button>
+            <button onClick={handleClickViewCCTV}>실시간 화면 보기</button>
             <table>
                 <thead>
                 <tr>
