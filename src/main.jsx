@@ -16,11 +16,11 @@ const router = createBrowserRouter([
         element: <ImageUploader/>,
     },
     {
-        path: "publisher",
+        path: "/publisher",
         element: <Publisher/>
     },
     {
-        path: "subscriber",
+        path: "/subscriber",
         element: <Subscriber/>
     }
 ]);
