@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Statistics.css">
+    <title>Statistics Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="Statistics.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>가장 많이 발생한 이상상황: 안전모 미착용</div>
+            <div>가장 많이 발생한 구역: A-101</div>
+            <div>이상상황 발생 횟수 평균: 5.2회</div>
+        </div>
+        <div class="chart-container">
+            <canvas id="barChart" width="400" height="200"></canvas>
+        </div>
+        <div class="pie-chart">
+            <h3>최근 이상상황 종류별 통계</h3>
+            <canvas id="pieChart" width="400" height="400"></canvas>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.app-container {
+    display: flex; 
+    height: 100vh; 
+}
+
+.sidebar {
+    width: 200px; /* 사이드바 너비 */
+    background-color: #f8f9fa;
+    padding: 0;
+    height: 100%;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); 
+    position: fixed; /* 사이드바 고정 위치 */
+    left: 0; /* 왼쪽 고정 */
+    top: 0; /* 상단 고정 */
+}
+
+.header {
+    display: flex; 
+    justify-content: space-between; 
+    padding: 10px; 
+    background: #fff; 
+    border-bottom: 1px solid #ccc;
+}
+
+.notification {
+    margin: 10px 0; 
+}
+
+.notification-item {
+    padding: 8px; 
+    margin: 5px 0; 
+    border: 1px solid;
+}
+
+.alert {
+    background: #f8d7da;
+    border-color: #f5c6cb; 
+}
+
+.warning {
+    background: #fff3cd;
+    border-color: #ffeeba; 
+}
+
+.main-content {
+    margin-left: 20px; /* 사이드바 너비에 맞게 왼쪽 여백 설정 */
+    margin-right: 20px; /* 오른쪽 여백 설정 (필요시 조정) */
+    padding: 20px; /* 내부 여백 설정 */
+    background-color: #fff; /* 배경 색상 */
+    min-width: 1100px; /* 최소 너비 설정 */
+    width: calc(100% - 240px); /* 사이드바와 여백을 고려한 전체 너비 설정 */
+    height: calc(100vh - 40px); /* 헤더 높이를 고려한 전체 높이 설정 */
+    box-sizing: border-box; /* 패딩과 테두리를 포함한 너비 및 높이 계산 */
+    overflow: auto; /* 콘텐츠가 넘칠 경우 스크롤 가능 */
+}

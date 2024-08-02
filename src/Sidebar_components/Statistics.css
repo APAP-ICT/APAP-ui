@@ -1,0 +1,54 @@
+/* Statistics.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.header div {
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    margin-right: 10px;
+}
+
+.header div:last-child {
+    margin-right: 0;
+}
+
+.chart-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.chart-container canvas {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.pie-chart {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.pie-chart canvas {
+    max-width: 400px;
+    margin: auto;
+}

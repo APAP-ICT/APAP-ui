@@ -1,0 +1,97 @@
+/* styles.css */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.app-container {
+    display: flex;
+}
+
+.sidebar {
+    width: 250px; /* 사이드바 너비 설정 */
+    background-color: #f8f9fa; /* 사이드바 배경색 */
+    padding: 0; /* 사이드바 여백 설정 */
+    height: 100%; /* 전체 높이 설정 */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    position: fixed; /* 사이드바를 고정 */
+    left: 0; /* 왼쪽 화면 끝에 고정 */
+}
+.sidebar-item {
+    display: block; /* 블록 요소로 설정하여 줄 바꿈 */
+    padding: 10px; /* 아이템 간의 여백 설정 */
+    text-decoration: none; /* 링크의 밑줄 제거 */
+    color: #007bff; /* 링크 색상 */
+    border-radius: 4px; /* 모서리 둥글게 */
+}
+
+.sidebar-item:hover {
+    background-color: #e9ecef; /* 마우스 오버 시 배경색 변경 */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+}
+
+.main-content {
+    margin-left: 250px; /* 사이드바 너비만큼 왼쪽 여백 설정 */
+    padding: 10px; /* 메인 콘텐츠 여백 설정 */
+    background-color: #fff; /* 메인 콘텐츠 배경색 */
+    width: calc(100% - 250px); /* 사이드바 너비만큼을 제외한 나머지 너비 설정 */
+    height: calc(100vh - 0); /* 전체 높이 설정 (상단 여백 없이) */
+    overflow: auto; /* 콘텐츠가 넘칠 경우 스크롤 가능 */
+}
+.notification {
+    margin: 20px;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white; /* 모달 배경색 */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.notification-item {
+    display: block; /* 블록 요소로 설정 */
+    padding: 10px; /* 여백 설정 */
+    margin: 5px 0; /* 아이템 간의 간격 설정 */
+    border: none; /* 기본 버튼 스타일 제거 */
+    border-radius: 4px; /* 모서리 둥글게 */
+    cursor: pointer; /* 커서 모양 변경 */
+    width: 100%; /* 버튼 너비 100% */
+    background-color: #79ade0; /* 버튼 배경색 */
+    color: white; /* 텍스트 색상 */
+}
+
+.notification-item:hover {
+    background-color: #0056b3; /* 마우스 오버 시 배경색 변경 */
+}
+
+
+.alert {
+    background: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.warning {
+    background: #fff3cd;
+    border-color: #ffeeba;
+}
