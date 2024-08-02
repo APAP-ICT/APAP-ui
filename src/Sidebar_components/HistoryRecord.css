@@ -1,0 +1,61 @@
+.container {
+    display: flex; 
+    max-width: 1000px;
+    min-height: 600px; 
+    margin: auto;
+    position: relative;
+    padding-right: 20px;
+}
+
+.mainContent {
+    flex: 2;
+    padding-right: 10px;
+}
+
+.rightSidebar {
+    width: 250px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    padding: 10px;
+    position: absolute; 
+    right: 20px;
+    top: 20px; 
+    height: auto; 
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.videoContainer {
+    background-color: #e0e0e0;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px; 
+}
+
+.playIcon {
+    font-size: 48px;
+    color: #555;
+}
+
+.details {
+    margin-bottom: 10px; 
+}
+
+
+.relatedItems {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.relatedItem {
+    background: #e0e0e0;
+    padding: 5px; 
+    border-radius: 5px;
+    text-align: center;
+}

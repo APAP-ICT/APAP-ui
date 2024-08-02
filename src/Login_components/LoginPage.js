@@ -5,17 +5,17 @@ import './LoginPage.css';
 const LoginPage = ({ onLogin }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate(); // useNavigate 훅 사용
+    const navigate = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault();
         // 로그인 처리 로직
         if (username === 'qwer' && password === '1234') {
-            alert('로그인 성공!'); // 로그인 성공 알림
+            alert('로그인 성공!');
             onLogin(); // 로그인 상태 업데이트
-            navigate('/'); // 로그인 후 메인 페이지로 이동
+            navigate('/');
         } else {
-            alert('로그인 실패: 잘못된 아이디 또는 비밀번호입니다.'); // 로그인 실패 알림
+            alert('로그인 실패: 잘못된 아이디 또는 비밀번호입니다.');
         }
     };
 

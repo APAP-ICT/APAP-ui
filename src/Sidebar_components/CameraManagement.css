@@ -1,0 +1,49 @@
+.cameraContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.cameraCard {
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    text-align: center;
+    padding: 20px;
+}
+
+.videoPlaceholder {
+    width: 100px;
+    height: 100px;
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 10px;
+    border-radius: 8px;
+}
+
+.playIcon {
+    font-size: 24px;
+}
+
+.cameraId {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.toggleButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.toggleButton.on {
+    background-color: red;
+}
+
+.toggleButton.off {
+    background-color: gray;
+}

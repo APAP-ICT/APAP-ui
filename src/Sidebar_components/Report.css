@@ -1,0 +1,46 @@
+.reportContainer {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.calendarGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.calendarDay {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e0f7fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.calendarDay:hover {
+    background-color: #b2ebf2;
+}
+
+.calendarDay.selected {
+    background-color: #00bcd4;
+    color: white;
+}
+
+.downloadButton {
+    padding: 10px 20px;
+    background-color: #00bcd4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.downloadButton:hover {
+    background-color: #0097a7;
+}

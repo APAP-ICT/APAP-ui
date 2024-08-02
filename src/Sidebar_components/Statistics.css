@@ -1,54 +1,37 @@
-/* Statistics.css */
-
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f9f9f9;
-    margin: 0;
+.statisticsContainer {
     padding: 20px;
+    font-family: Arial, sans-serif;
 }
 
-.container {
-    max-width: 1200px;
-    margin: auto;
-}
-
-.header {
+.statisticsCard {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
 }
 
-.header div {
-    padding: 15px;
-    background-color: #fff;
+.statisticItem {
+    background-color: #f0f0f0;
+    padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    flex: 1;
-    margin-right: 10px;
-}
-
-.header div:last-child {
-    margin-right: 0;
-}
-
-.chart-container {
-    margin-top: 30px;
-    display: flex;
-    justify-content: space-around;
-}
-
-.chart-container canvas {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.pie-chart {
-    margin-top: 30px;
+    width: 30%;
     text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.pie-chart canvas {
-    max-width: 400px;
-    margin: auto;
+.chartContainer {
+    width: 300px; /* 원하는 너비 설정 */
+    height: 300px; /* 원하는 높이 설정 */
+    margin: 0 auto; /* 중앙 정렬 */
+}
+
+h1, h2 {
+    margin: 20px 0;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+h2 {
+    font-size: 20px;
 }

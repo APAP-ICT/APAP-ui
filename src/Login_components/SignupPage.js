@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // useNavigate 훅 임포트
+import { useNavigate } from 'react-router-dom'; 
 import './SignupPage.css';
 
 const SignupPage = () => {
-    const navigate = useNavigate(); // useNavigate 훅 사용
+    const navigate = useNavigate(); 
 
     useEffect(() => {
         const form = document.getElementById('signupForm');
@@ -28,7 +28,7 @@ const SignupPage = () => {
 
             // 회원가입 로직 처리 (예: 서버에 데이터 전송)
             alert(`회원가입 성공! 아이디: ${username}, 닉네임: ${nickname}`);
-            form.reset(); // 회원가입 후 폼 초기화
+            form.reset(); 
         });
     }, [navigate]);
 
