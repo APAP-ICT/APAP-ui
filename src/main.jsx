@@ -5,7 +5,7 @@ import ObjectDetectResult from "./pages/ObjectDetectResult.jsx";
 import ImageUploader from "./pages/ImageUploader.jsx";
 import Publisher from "./pages/Publisher.jsx";
 import Subscriber from "./pages/Subscriber.jsx";
-import {registerServiceWorker} from "/register-sw.js?url";
+import {registerServiceWorker} from "../public/register-sw.js";
 import requestPermission from "./push-notification.js";
 
 const router = createBrowserRouter([
