@@ -5,7 +5,7 @@ export default {
         return HISTORY_API.get('/api/infos');
     },
     registerPushToken(token) {
-        return HISTORY_API.post('notifications/token', {
+        return HISTORY_API.post('/api/notifications/token', {
             token: token
         })
     }
