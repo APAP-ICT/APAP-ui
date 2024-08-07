@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import Notifications from './Notification';
+import Notifications from './components/Notification.jsx';
 
 const MainContent = () => {
     return (
