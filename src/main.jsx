@@ -14,10 +14,11 @@ import CameraManagement from './pages/CameraManagement/CameraManagement';
 import Report from './pages/Report/Report';
 import ObjectDetectResult from './pages/ObjectDetectResultList/ObjectDetectResult';
 import ImageUploader from './pages/ImageUploader/ImageUploader';
-import Publisher from './pages/Publisher';
-import Subscriber from './pages/Subscriber';
+import Publisher from './pages/CameraManagement/Publisher.jsx';
+import Subscriber from './pages/Dashboard/Subscriber.jsx';
 import requestPermission from "./push-notification.js";
 import {registerServiceWorker} from "../public/register-sw.js";
+import SubscriberList from "./pages/Dashboard/SubscriberList.jsx";
 
 const App = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -63,11 +64,11 @@ const App = () => {
                 {path: "object-detect", element: <ObjectDetectResult/>},
                 {path: "upload", element: <ImageUploader/>},
                 {path: "publisher", element: <Publisher/>},
-                {path: "subscriber", element: <Subscriber/>},
+                {path: "subscriber", element: <SubscriberList/>},
                 {path: "*", element: <Navigate to="/"/>}
             ]
         },
-        {path: "*", element: <Navigate to={isAuthenticated ? "/" : "/login"}/>}
+        // {path: "*", element: <Navigate to={isAuthenticated ? "/" : "/login"}/>}
     ]);
 
     return (

@@ -10,5 +10,9 @@ export default {
             },
         })
     },
+    async fetchLocations() {
+        const {items} = await AI_API.get('/api/publishers');
+        return items;
+    },
 }
 
