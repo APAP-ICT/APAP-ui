@@ -35,7 +35,7 @@ HISTORY_API.interceptors.response.use(
 AI_API.interceptors.response.use(
     res => {
         const {data} = res
-        if (data.code !== 200) {
+        if (data.code !== '200') {
             handleApiBadRequest(data)
         }
 

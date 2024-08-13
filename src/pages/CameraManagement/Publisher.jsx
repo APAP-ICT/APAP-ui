@@ -42,10 +42,12 @@ const Publisher = () => {
         socket.binaryType = 'arraybuffer';
         socket.onopen = () => {
             setConnected(true);
+            console.log('WebSocket connection opened');
         };
 
         socket.onclose = () => {
             setConnected(false);
+            console.log('WebSocket connection closed');
         };
 
         socket.onerror = (error) => {
@@ -54,10 +56,8 @@ const Publisher = () => {
         };
 
         function captureFrame() {
-            if (videoElement.readyState !== videoElement.HAVE_ENOUGH_DATA) {
-                requestAnimationFrame(captureFrame);
+            if (videoElement.readyState !== videoElement.HAVE_ENOUGH_DATA)
                 return;
-            }
 
             const offscreenCanvas = new OffscreenCanvas(videoElement.videoWidth, videoElement.videoHeight);
             const context = offscreenCanvas.getContext('2d');
@@ -67,15 +67,15 @@ const Publisher = () => {
                 if (socket.readyState === WebSocket.OPEN) {
                     socket.send(blob);
                 }
-                requestAnimationFrame(captureFrame);
             });
         }
 
         navigator.mediaDevices.getUserMedia({video: true}).then(stream => {
             videoElement.srcObject = stream;
-            requestAnimationFrame(captureFrame);
+            const intervalId = setInterval(captureFrame, 100);
 
             return () => {
+                clearInterval(intervalId);
                 socket?.close();
             };
         }).catch(error => {
