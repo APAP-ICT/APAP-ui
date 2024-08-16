@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import ReactDOM from 'react-dom/client';
-import {createBrowserRouter, RouterProvider, Route, Navigate, Outlet} from 'react-router-dom';
+import {createBrowserRouter, Navigate, Outlet, RouterProvider} from 'react-router-dom';
 import './styles.css';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
@@ -43,6 +43,10 @@ const App = () => {
             element: <SignupPage/>
         },
         {
+            path: "/publisher",
+            element: <Publisher/>
+        },
+        {
             path: "/",
             element: isAuthenticated ? (
                 <>
@@ -62,13 +66,11 @@ const App = () => {
                 {path: "report", element: <Report/>},
                 // 하위는 임시 메뉴
                 {path: "object-detect", element: <ObjectDetectResult/>},
-                {path: "upload", element: <ImageUploader/>},
+                {path: "image-upload", element: <ImageUploader/>},
                 {path: "publisher", element: <Publisher/>},
-                {path: "subscriber", element: <SubscriberList/>},
-                {path: "*", element: <Navigate to="/"/>}
+                {path: "subscriber", element: <SubscriberList/>}
             ]
-        },
-        // {path: "*", element: <Navigate to={isAuthenticated ? "/" : "/login"}/>}
+        }
     ]);
 
     return (

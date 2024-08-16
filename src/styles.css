@@ -4,115 +4,115 @@ body {
 }
 
 .app-container {
-    display: flex; 
-    height: 100vh; 
+    display: flex;
+    height: 100vh;
 }
 
 .sidebar {
-    width: 200px; 
+    width: 200px;
     background-color: #f8f9fa;
     padding: 0;
     height: 100%;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); 
-    position: fixed; 
-    left: 0; 
-    top: 0; 
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    left: 0;
+    top: 0;
 }
 
 .header {
-    display: flex; 
-    justify-content: space-between; 
-    padding: 10px; 
-    background: #fff; 
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: #fff;
     border-bottom: 1px solid #ccc;
 }
 
 .notification {
-    margin: 10px 0; 
+    margin: 10px 0;
 }
 
 .notification-item {
-    padding: 8px; 
-    margin: 5px 0; 
+    padding: 8px;
+    margin: 5px 0;
     border: 1px solid;
 }
 
 .alert {
     background: #f8d7da;
-    border-color: #f5c6cb; 
+    border-color: #f5c6cb;
 }
 
 .warning {
     background: #fff3cd;
-    border-color: #ffeeba; 
+    border-color: #ffeeba;
 }
 
 .main-content {
     margin-left: 220px;
-    margin-right: 20px; 
-    padding: 20px; 
-    background-color: #fff; 
-    min-width: 1100px; 
-    width: calc(100% - 240px); body {
-        margin: 0
+    margin-right: 20px;
+    padding: 20px;
+    background-color: #fff;
+    min-width: 1100px;
+    width: calc(100% - 240px); & body {
+        margin: 0;
         font-family: Arial, sans-serif;
     }
 
     .app-container {
-        display: flex; 
-        height: 100vh; 
+        display: flex;
+        height: 100vh;
     }
-    
+
     .sidebar {
-        width: 200px; 
+        width: 200px;
         background-color: #f8f9fa;
         padding: 0;
         height: 100%;
-        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); 
-        position: fixed; 
-        left: 0; 
-        top: 0; 
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        left: 0;
+        top: 0;
     }
-    
+
     .header {
-        display: flex; 
-        justify-content: space-between; 
-        padding: 10px; 
-        background: #fff; 
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        background: #fff;
         border-bottom: 1px solid #ccc;
     }
-    
+
     .notification {
-        margin: 10px 0; 
+        margin: 10px 0;
     }
-    
+
     .notification-item {
-        padding: 8px; 
-        margin: 5px 0; 
+        padding: 8px;
+        margin: 5px 0;
         border: 1px solid;
     }
-    
+
     .alert {
         background: #f8d7da;
-        border-color: #f5c6cb; 
+        border-color: #f5c6cb;
     }
-    
+
     .warning {
         background: #fff3cd;
-        border-color: #ffeeba; 
+        border-color: #ffeeba;
     }
-    
+
     .main-content {
         margin: 10px;
-        padding: 20px; 
-        background-color: #fff; 
+        padding: 20px;
+        background-color: #fff;
         min-width: 800px;
         max-width: calc(100% - 40px);
-        height: auto; 
+        height: auto;
         box-sizing: border-box;
-        overflow: auto; 
+        overflow: auto;
     }
-    
+
     .main-content:empty {
         height: calc(100vh - 40px);
         display: flex;
@@ -122,8 +122,25 @@ body {
         color: #999;
         font-size: 1.2em;
     }
-    
-    height: calc(100vh - 40px); 
+
+    height: calc(100vh - 40px);
     box-sizing: border-box;
-    overflow: auto; 
+    overflow: auto;
+}
+
+.message-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.message-table th, .message-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.message-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
 }
