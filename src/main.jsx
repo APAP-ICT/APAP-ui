@@ -2,6 +2,7 @@ import {useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import {createBrowserRouter, Navigate, Outlet, RouterProvider} from 'react-router-dom';
 import './styles.css';
+import 'rsuite/dist/rsuite.min.css';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import MainContent from './MainContent';

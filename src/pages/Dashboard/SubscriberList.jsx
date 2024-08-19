@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import ai from "../../api/ai.js";
-import Subscriber from "./Subscriber.jsx";
+import SubscriberComponent from "../../components/SubscriberComponent.jsx";
 
 const SubscriberList = () => {
     const [locations, setLocations] = useState([]);
@@ -23,7 +23,7 @@ const SubscriberList = () => {
                 <ul>
                     {locations.map((location, index) => (
                         <li key={index}>
-                            <Subscriber locationName={location}/>
+                            <SubscriberComponent locationName={location}/>
                         </li>
                     ))}
                 </ul>

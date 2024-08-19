@@ -1,5 +1,5 @@
 import {useCallback, useRef, useState} from 'react';
-import ConnectionStatus from "../../components/ConnectionStatus.jsx";
+import ConnectionStatusComponent from "../../components/ConnectionStatusComponent.jsx";
 
 const LocationInput = ({onLocationChange}) => {
     const [locationName, setLocationName] = useState('');
@@ -91,7 +91,7 @@ const Publisher = () => {
         <div>
             <LocationInput onLocationChange={connectWebsocket}/>
             <h1>Streamer</h1>
-            <ConnectionStatus isConnected={isConnected}/>
+            <ConnectionStatusComponent isConnected={isConnected}/>
             <video ref={videoRef} autoPlay></video>
         </div>
     );

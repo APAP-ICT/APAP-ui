@@ -1,8 +1,8 @@
 import {useEffect, useRef, useState} from 'react';
-import ConnectionStatus from "../../components/ConnectionStatus.jsx";
-import defaultImage from '../../assets/loading.png';
+import ConnectionStatusComponent from "./ConnectionStatusComponent.jsx";
+import defaultImage from '../assets/loading.png';
 
-const Subscriber = ({locationName}) => {
+const SubscriberComponent = ({locationName}) => {
     const imgRef = useRef(null);
     const socketRef = useRef(null);
     const [isConnected, setConnected] = useState(false);
@@ -46,11 +46,10 @@ const Subscriber = ({locationName}) => {
 
     return (
         <div>
-            <h1>{locationName}</h1>
-            <ConnectionStatus isConnected={isConnected}/>
+            <ConnectionStatusComponent isConnected={isConnected}/>
             <img ref={imgRef} alt="Video Stream" onError={handleOnErrorLoadingImage}/>
         </div>
     );
 };
 
-export default Subscriber;
+export default SubscriberComponent;
