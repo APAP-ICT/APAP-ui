@@ -15,17 +15,16 @@ import Report from './pages/Report/Report';
 import ObjectDetectResult from './pages/ObjectDetectResultList/ObjectDetectResult';
 import ImageUploader from './pages/ImageUploader/ImageUploader';
 import Publisher from './pages/CameraManagement/Publisher.jsx';
-import Subscriber from './pages/Dashboard/Subscriber.jsx';
 import requestPermission from "./push-notification.js";
 import {registerServiceWorker} from "../public/register-sw.js";
 import SubscriberList from "./pages/Dashboard/SubscriberList.jsx";
 
 const App = () => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(true);
 
-    const handleLogin = () => {
+    const handleLogin = (email) => {
         setIsAuthenticated(true);
-        requestPermission()
+        requestPermission(email)
         registerServiceWorker()
     };
 

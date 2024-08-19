@@ -15,7 +15,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
 
-async function requestPermission() {
+async function requestPermission(email) {
     const permission = await Notification.requestPermission();
     if (permission === "denied") {
         return;
@@ -23,7 +23,7 @@ async function requestPermission() {
 
     const token = await getToken(messaging);
     if (token) {
-        history.registerPushToken(token);
+        history.registerPushToken(token, email);
     }
 
     onMessage(messaging, (payload) => {

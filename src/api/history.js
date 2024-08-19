@@ -4,9 +4,10 @@ export default {
     fetchDetectResults() {
         return HISTORY_API.get('/api/infos');
     },
-    registerPushToken(token) {
-        return HISTORY_API.post('/api/notifications/token', {
-            token: token
+    registerPushToken(token, email) {
+        return HISTORY_API.post('/api/tokens', {
+            token: token,
+            email: email
         })
     }
 }
