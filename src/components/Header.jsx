@@ -4,7 +4,7 @@ import '../styles.css';
 import Notification from './Notification.jsx';
 import LogoutModal from '../pages/Login/LogoutModal.jsx';
 
-const Header = ({onLogout, userName}) => {
+const Header = ({onLogout, userName = '항만관리자123'}) => {
     const navigate = useNavigate();
     const [isNotificationsOpen, setNotificationsOpen] = useState(false);
     const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
@@ -53,10 +53,6 @@ const Header = ({onLogout, userName}) => {
             </div>
         </>
     );
-};
-
-Header.defaultProps = {
-    userName: '항만관리자123'
 };
 
 export default Header;
