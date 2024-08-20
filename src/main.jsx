@@ -1,11 +1,10 @@
-import {useState} from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import {createBrowserRouter, Navigate, Outlet, RouterProvider} from 'react-router-dom';
 import './styles.css';
 import 'rsuite/dist/rsuite.min.css';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
-import MainContent from './MainContent';
 import LoginPage from './pages/Login/LoginPage';
 import SignupPage from './pages/SignUp/SignupPage';
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -19,13 +18,24 @@ import Publisher from './pages/CameraManagement/Publisher.jsx';
 import requestPermission from "./push-notification.js";
 import {registerServiceWorker} from "../public/register-sw.js";
 import SubscriberList from "./pages/Dashboard/SubscriberList.jsx";
+import NotificationToastComponent from "./components/NotificationToastComponent.jsx";
+import {useToaster} from "rsuite";
 
 const App = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(true);
+    const toaster = useToaster();
+
+    const handleOnMessage = (payload) => {
+        const {title, body, image} = payload.notification
+        return toaster.push(
+            <NotificationToastComponent title={title} datetime={body} image={image}/>,
+            {placement: 'bottomEnd'}
+        )
+    }
 
     const handleLogin = (email) => {
         setIsAuthenticated(true);
-        requestPermission(email)
+        requestPermission(email, handleOnMessage)
         registerServiceWorker()
     };
 
@@ -58,8 +68,7 @@ const App = () => {
                 </>
             ) : <Navigate to="/login"/>,
             children: [
-                {path: "", element: <MainContent/>},
-                {path: "dashboard", element: <Dashboard/>},
+                {path: "", element: <Dashboard/>},
                 {path: "statistics", element: <Statistics/>},
                 {path: "history", element: <History/>},
                 {path: "camera-management", element: <CameraManagement/>},

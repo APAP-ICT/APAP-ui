@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import '../styles.css';
 
 const sidebarItems = [
-    { name: '대시보드', path: '/dashboard' },
+    { name: '대시보드', path: '/' },
     { name: '통계 현황', path: '/statistics' },
     { name: '이상상황 과거이력', path: '/history' },
     { name: '카메라 관리', path: '/camera-management' },

@@ -15,7 +15,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
 
-async function requestPermission(email) {
+async function requestPermission(email, handleOnMessage) {
     const permission = await Notification.requestPermission();
     if (permission === "denied") {
         return;
@@ -27,7 +27,7 @@ async function requestPermission(email) {
     }
 
     onMessage(messaging, (payload) => {
-        //TODO 구현 필요
+        handleOnMessage(payload);
         console.log("메시지가 도착했습니다.", payload);
     });
 }
