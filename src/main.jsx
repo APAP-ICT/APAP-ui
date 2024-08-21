@@ -25,9 +25,9 @@ const App = () => {
     const toaster = useToaster();
 
     const handleOnMessage = (payload) => {
-        const {title, body, image} = payload.notification
+        const {title, body, imageUrl, infoId} = payload.data
         return toaster.push(
-            <NotificationToastComponent title={title} datetime={body} image={image}/>,
+            <NotificationToastComponent title={title} datetime={body} image={imageUrl}/>,
             {placement: 'bottomEnd'}
         )
     }

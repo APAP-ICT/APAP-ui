@@ -7,7 +7,6 @@ const sidebarItems = [
     { name: '이상상황 과거이력', path: '/history' },
     { name: '카메라 관리', path: '/camera-management' },
     { name: '객체 탐지 결과', path: '/object-detect' },
-    { name: '실시간 상황', path: '/subscriber' },
     { name: '카메라', path: '/publisher' },
     { name: '이미지 업로드', path: '/image-upload' }
 ];
