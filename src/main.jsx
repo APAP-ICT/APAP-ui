@@ -17,7 +17,6 @@ import ImageUploader from './pages/ImageUploader/ImageUploader';
 import Publisher from './pages/CameraManagement/Publisher.jsx';
 import requestPermission from "./push-notification.js";
 import {registerServiceWorker} from "../public/register-sw.js";
-import SubscriberList from "./pages/Dashboard/SubscriberList.jsx";
 import NotificationToastComponent from "./components/NotificationToastComponent.jsx";
 import {useToaster} from "rsuite";
 
@@ -73,11 +72,10 @@ const App = () => {
                 {path: "history", element: <History/>},
                 {path: "camera-management", element: <CameraManagement/>},
                 {path: "report", element: <Report/>},
+                {path: "image-upload", element: <ImageUploader/>},
                 // 하위는 임시 메뉴
                 {path: "object-detect", element: <ObjectDetectResult/>},
-                {path: "image-upload", element: <ImageUploader/>},
-                {path: "publisher", element: <Publisher/>},
-                {path: "subscriber", element: <SubscriberList/>}
+                {path: "publisher", element: <Publisher/>}
             ]
         }
     ]);

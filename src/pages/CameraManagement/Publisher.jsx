@@ -3,13 +3,18 @@ import ConnectionStatusComponent from "../../components/ConnectionStatusComponen
 
 const LocationInput = ({onLocationChange}) => {
     const [locationName, setLocationName] = useState('');
+    const [operation, setOperation] = useState('estimate_distance');
 
-    const handleInputChange = (event) => {
+    const handleLocationInputChange = (event) => {
         setLocationName(event.target.value);
     };
 
+    const handleOperationInputChange = (event) => {
+        setOperation(event.target.value);
+    };
+
     const handleSubmit = () => {
-        onLocationChange(locationName);
+        onLocationChange(locationName, operation);
     };
 
     return (
@@ -17,8 +22,14 @@ const LocationInput = ({onLocationChange}) => {
             <input
                 type="text"
                 value={locationName}
-                onChange={handleInputChange}
+                onChange={handleLocationInputChange}
                 placeholder="Enter location name"
+            />
+            <input
+                type="text"
+                value={operation}
+                onChange={handleOperationInputChange}
+                placeholder="Enter operation name"
             />
             <button onClick={handleSubmit}>Submit</button>
         </div>
@@ -30,29 +41,26 @@ const Publisher = () => {
     const websocketRef = useRef(null);
     const videoRef = useRef(null);
     const [isConnected, setConnected] = useState(false);
-    const resolvePublisherAddress = (locationName) => {
-        return `${import.meta.env.VITE_WS_PUBLISHER}/${locationName}`
+    const resolvePublisherAddress = (locationName, operation) => {
+        return `${import.meta.env.VITE_WS_PUBLISHER}/${locationName}?op=${operation}`
     }
 
-    const connectWebsocket = useCallback((locationName) => {
+    const connectWebsocket = useCallback((locationName, operation) => {
         const videoElement = videoRef.current;
-        const socket = new WebSocket(resolvePublisherAddress(locationName));
+        const socket = new WebSocket(resolvePublisherAddress(locationName, operation));
         websocketRef.current = socket;
 
         socket.binaryType = 'arraybuffer';
         socket.onopen = () => {
             setConnected(true);
-            console.log('WebSocket connection opened');
         };
 
         socket.onclose = () => {
             setConnected(false);
-            console.log('WebSocket connection closed');
         };
 
         socket.onerror = (error) => {
             setConnected(false);
-            console.error('WebSocket error:', error);
         };
 
         function captureFrame() {
