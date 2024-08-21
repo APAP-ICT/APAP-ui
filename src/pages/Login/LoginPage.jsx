@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import './LoginPage.css';
 
-const LoginPage = ({ onLogin }) => {
+
+const accessibleUserNames = ['qwer@gmail.com', 'qwer2@gmail.com', 'qwer3@gmail.com']
+
+const LoginPage = ({onLogin}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -10,7 +13,7 @@ const LoginPage = ({ onLogin }) => {
     const handleLogin = (e) => {
         e.preventDefault();
 
-        if (username === 'qwer@gmail.com' && password === '1234') {
+        if (accessibleUserNames.includes(username) && password === '1234') {
             alert('로그인 성공!');
             onLogin(username);
             navigate('/');
