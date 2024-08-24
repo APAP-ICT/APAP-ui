@@ -19,9 +19,9 @@
 }
 
 .chartContainer {
-    width: 300px; /* 원하는 너비 설정 */
-    height: 300px; /* 원하는 높이 설정 */
-    margin: 0 auto; /* 중앙 정렬 */
+    width: 300px; 
+    height: 300px; 
+    margin: 0 auto; 
 }
 
 h1, h2 {

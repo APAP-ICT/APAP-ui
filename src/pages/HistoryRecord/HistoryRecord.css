@@ -1,61 +1,70 @@
-.container {
-    display: flex; 
-    max-width: 1000px;
-    min-height: 600px; 
+.incident-list-container {
+    padding: 20px;
+    max-width: 1200px;
     margin: auto;
-    position: relative;
-    padding-right: 20px;
+    background-color: #f8f9fa;
 }
 
-.mainContent {
-    flex: 2;
-    padding-right: 10px;
-}
-
-.rightSidebar {
-    width: 250px;
-    background-color: #f0f0f0;
-    border-radius: 8px;
-    padding: 10px;
-    position: absolute; 
-    right: 20px;
-    top: 20px; 
-    height: auto; 
-}
-
-.title {
+.incident-list-header {
+    margin-bottom: 20px;
     font-size: 24px;
-    margin-bottom: 10px;
+    font-weight: bold;
 }
 
-.videoContainer {
+.incident-list-filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.incident-list-filters input,
+.incident-list-filters select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: white;
+    font-size: 14px;
+}
+
+.incident-list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    justify-items: center; 
+}
+
+.incident-card {
     background-color: #e0e0e0;
-    height: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+    width: 150px; 
+}
+
+.incident-card:hover {
+    background-color: #d4d4d4;
+}
+
+.incident-thumbnail {
+    background-color: #ddd;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
+    border-radius: 8px;
 }
 
-.playIcon {
-    font-size: 48px;
+.play-icon {
+    font-size: 24px;
     color: #555;
 }
 
-.details {
-    margin-bottom: 10px; 
-}
-
-
-.relatedItems {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-}
-
-.relatedItem {
-    background: #e0e0e0;
-    padding: 5px; 
-    border-radius: 5px;
-    text-align: center;
+.incident-title {
+    font-size: 14px;
+    color: #333;
+    margin-top: 5px;
 }

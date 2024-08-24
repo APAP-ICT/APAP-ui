@@ -1,33 +1,42 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './Dashboard.css';
-
-const historyData = {
-    'A-101': [
-        { date: '2024-07-08 17:52:41', description: '안전모 미착용 위반', status: 'warning' },
-        { date: '2024-07-07 08:12:01', description: '화재 발생', status: 'alert' },
-        { date: '2024-07-07 11:30:30', description: '폭력 발생', status: 'alert' },
-        { date: '2024-07-06 13:20:11', description: '2인 1조 동행 위반', status: 'warning' },
-    ],
-    'A-102': [
-        { date: '2024-07-08 17:30:00', description: '이상 행동 감지', status: 'alert' },
-        { date: '2024-07-07 10:15:00', description: '고장 발생', status: 'warning' },
-    ],
-    'A-103': [
-        { date: '2024-07-08 12:00:00', description: '출입 금지 구역 진입', status: 'alert' },
-    ],
-    'A-104': [
-        { date: '2024-07-08 09:45:00', description: '사고 발생', status: 'alert' },
-        { date: '2024-07-07 14:00:00', description: '이상 행동 감지', status: 'warning' },
-    ],
-};
 
 const Dashboard = () => {
     const [selectedArea, setSelectedArea] = useState(null);
     const [selectedHistory, setSelectedHistory] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    const handleAreaClick = (area) => {
+    const handleAreaClick = async (area) => {
         setSelectedArea(area);
-        setSelectedHistory(historyData[area] || []);
+        setLoading(true);
+        setError(null);
+
+        try {
+            const response = await axios.get(`http://3.34.196.131:8080/api/infos?area=${area}`);
+            const formattedData = response.data.map(item => ({
+                date: formatDateTime(item.localDateTime),
+                description: `발생 이상현상: ${item.label}`,
+            }));
+            setSelectedHistory(formattedData);
+        } catch (err) {
+            setError('데이터를 가져오는 중 오류가 발생했습니다.');
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const formatDateTime = (dateTime) => {
+        const date = new Date(dateTime);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const seconds = String(date.getSeconds()).padStart(2, '0');
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     };
 
     return (
@@ -50,14 +59,18 @@ const Dashboard = () => {
             {selectedArea && (
                 <div className="history">
                     <h2>{selectedArea} 구역의 이상상황 타임라인</h2>
-                    <div className="timeline">
-                        {selectedHistory.map((event, index) => (
-                            <div key={index} className="timeline-item">
-                                <div className={`status-dot ${event.status}`}></div>
-                                <span>{event.date} {event.description}</span>
-                            </div>
-                        ))}
-                    </div>
+                    {loading && <p>로딩 중...</p>}
+                    {error && <p className="error">{error}</p>}
+                    {!loading && !error && (
+                        <div className="timeline">
+                            {selectedHistory.map((event, index) => (
+                                <div key={index} className="timeline-item">
+                                    <div className={`status-dot`}></div>
+                                    <span>{event.date} {event.description}</span>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
             )}
         </div>
