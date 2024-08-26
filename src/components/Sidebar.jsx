@@ -6,7 +6,7 @@ const sidebarItems = [
     { name: '통계 현황', path: '/statistics' },
     { name: '이상상황 과거이력', path: '/history' },
     { name: '카메라 관리', path: '/camera-management' },
-    { name: '객체 탐지 결과', path: '/object-detect' },
+    { name: '보고서', path: '/report' },
     { name: '카메라', path: '/publisher' },
     { name: '이미지 업로드', path: '/image-upload' }
 ];

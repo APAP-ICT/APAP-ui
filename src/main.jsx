@@ -13,7 +13,6 @@ import History from './pages/HistoryRecord/HistoryRecord';
 import HistoryRecordDetail from './pages/HistoryRecord/HistoryRecordDetail';
 import CameraManagement from './pages/CameraManagement/CameraManagement';
 import Report from './pages/Report/Report';
-import ObjectDetectResult from './pages/ObjectDetectResultList/ObjectDetectResult';
 import ImageUploader from './pages/ImageUploader/ImageUploader';
 import Publisher from './pages/CameraManagement/Publisher.jsx';
 import requestPermission from "./push-notification.js";
@@ -26,9 +25,8 @@ const App = () => {
     const toaster = useToaster();
 
     const handleOnMessage = (payload) => {
-        const {title, body, imageUrl, infoId} = payload.data
         return toaster.push(
-            <NotificationToastComponent title={title} datetime={body} image={imageUrl}/>,
+            <NotificationToastComponent notification={payload.data}/>,
             {placement: 'bottomEnd'}
         )
     }
@@ -74,7 +72,6 @@ const App = () => {
                 {path: "history/:incidentId", element: <HistoryRecordDetail/>},
                 {path: "camera-management", element: <CameraManagement/>},
                 {path: "report", element: <Report/>},
-                {path: "object-detect", element: <ObjectDetectResult/>},
                 {path: "image-upload", element: <ImageUploader/>},
                 {path: "*", element: <Navigate to="/"/>}
             ]

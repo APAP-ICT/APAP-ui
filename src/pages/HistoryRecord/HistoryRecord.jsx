@@ -1,33 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import './HistoryRecord.css';
+import {dateFormat} from "../../util/utils.js";
+import history from "../../api/history.js";
 
 const HistoryRecord = () => {
     const [incidents, setIncidents] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [selectedIncidentType, setSelectedIncidentType] = useState(""); // 선택된 이상상황 유형 저장
-    const [selectedCameraLocation, setSelectedCameraLocation] = useState(""); // 선택된 카메라 위치 저장
+    const [selectedIncidentType, setSelectedIncidentType] = useState("");
+    const [selectedCameraLocation, setSelectedCameraLocation] = useState("");
+    const [selectedDate, setSelectedDate] = useState('');
     const navigate = useNavigate();
 
-    const incidentTypes = ["화재", "전기", "가스 유출"]; // 드롭다운에 표시될 이상상황 목록
-    const cameraLocations = ["A-101", "C-394", "E-132"]; // 드롭다운에 표시될 카메라 위치 목록
+
+    const incidentTypes = ["화재", "전기", "가스 유출"];
+    const cameraLocations = ["A-101", "A-102", "C-394", "E-132"];
+
+    const fetchIncidents = async () => {
+        const results = await history.fetchDetectResults({
+            cameraName: selectedCameraLocation,
+            date: selectedDate
+        });
+        setIncidents(results)
+    };
 
     useEffect(() => {
-        const fetchIncidents = async () => {
-            try {
-                const response = await axios.get('http://3.34.196.131:8080/api/infos');
-                setIncidents(response.data);
-            } catch (err) {
-                setError('데이터를 불러오는 중 오류가 발생했습니다.');
-            } finally {
-                setLoading(false);
-            }
-        };
-
         fetchIncidents();
-    }, []);
+    }, [selectedIncidentType, selectedCameraLocation, selectedDate]);
 
     const handleIncidentClick = (incidentId) => {
         navigate(`/history/${incidentId}`);
@@ -35,32 +33,17 @@ const HistoryRecord = () => {
 
     const handleIncidentTypeChange = (event) => {
         setSelectedIncidentType(event.target.value);
-        // 이곳에 선택한 유형에 따른 추가 로직을 추가할 수 있습니다.
     };
 
     const handleCameraLocationChange = (event) => {
         setSelectedCameraLocation(event.target.value);
-        // 이곳에 선택한 위치에 따른 추가 로직을 추가할 수 있습니다.
     };
 
-    const formatIncidentTitle = (dateString, description) => {
-        let formattedDate;
-        try {
-            const dateObj = new Date(dateString);
-            const year = dateObj.getFullYear();
-            const month = String(dateObj.getMonth() + 1).padStart(2, '0');
-            const day = String(dateObj.getDate()).padStart(2, '0');
-            formattedDate = `${year}-${month}-${day}`;
-        } catch (error) {
-            console.error("Invalid date format:", dateString, "Using default date.");
-            formattedDate = "Invalid-date";
-        }
-
-        return `${formattedDate}_${description}`;
+    const handleDateChange = (event) => {
+        setSelectedDate(event.target.value);
     };
 
-    if (loading) return <p>로딩 중...</p>;
-    if (error) return <p className="error">{error}</p>;
+    const formatIncidentTitle = (dateString, description) => `${dateFormat(dateString)}_${description}`;
 
     return (
         <div className="incident-list-container">
@@ -68,7 +51,12 @@ const HistoryRecord = () => {
                 <h1>이상상황 과거이력 리스트</h1>
             </header>
             <div className="incident-list-filters">
-                <input type="date" />
+                <input
+                    type="date"
+                    id="dateInput"
+                    value={selectedDate}
+                    onChange={handleDateChange}
+                />
                 <select value={selectedCameraLocation} onChange={handleCameraLocationChange}>
                     <option value="">카메라 위치를 선택해주세요</option>
                     {cameraLocations.map((location, index) => (
@@ -88,9 +76,9 @@ const HistoryRecord = () => {
             </div>
             <div className="incident-list-grid">
                 {incidents.map((incident, index) => (
-                    <div 
-                        key={index} 
-                        className="incident-card" 
+                    <div
+                        key={index}
+                        className="incident-card"
                         onClick={() => handleIncidentClick(incident.id)}
                     >
                         <div className="incident-thumbnail">

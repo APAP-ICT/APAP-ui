@@ -1,31 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {useParams} from 'react-router-dom';
 import './HistoryRecordDetail.css';
+import history from "../../api/history.js";
 
 const HistoryRecordDetail = () => {
-    const { incidentId } = useParams(); // URL에서 incidentId를 가져옴
+    const {incidentId} = useParams();
     const [incident, setIncident] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+
+    const fetchIncidentDetail = async () => {
+        const result = await history.fetchDetectResult(incidentId);
+        setIncident(result)
+    };
 
     useEffect(() => {
-        const fetchIncidentDetails = async () => {
-            try {
-                const response = await axios.get(`http://3.34.196.131:8080/api/infos/${incidentId}`);
-                setIncident(response.data);
-            } catch (err) {
-                setError('데이터를 불러오는 중 오류가 발생했습니다.');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchIncidentDetails();
+        fetchIncidentDetail();
     }, [incidentId]);
 
-    if (loading) return <p>로딩 중...</p>;
-    if (error) return <p className="error">{error}</p>;
     if (!incident) return <p>해당 사건을 찾을 수 없습니다.</p>;
 
     return (
@@ -41,7 +31,7 @@ const HistoryRecordDetail = () => {
                     <h2>발생시간</h2>
                     <p>{new Date(incident.localDateTime).toLocaleString()}</p>
                     <h2>발생위치</h2>
-                    <p>{incident.location}</p>
+                    <p>{incident.cameraName}</p>
                     <h2>상황 설명 및 발생가능 위험성</h2>
                     <p>{incident.description}</p>
                 </div>
