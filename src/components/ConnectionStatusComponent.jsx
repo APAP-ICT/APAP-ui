@@ -1,4 +1,4 @@
-const ConnectionStatus = ({isConnected}) => {
+const ConnectionStatusComponent = ({isConnected}) => {
     return (
         <div>
             서버 연결 여부 : {isConnected ? '🟢' : '🔴'}
@@ -6,4 +6,4 @@ const ConnectionStatus = ({isConnected}) => {
     );
 };
 
-export default ConnectionStatus;
+export default ConnectionStatusComponent;

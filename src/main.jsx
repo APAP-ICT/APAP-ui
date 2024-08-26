@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import {useState} from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider, Route, Navigate, Outlet } from 'react-router-dom';
+import {createBrowserRouter, Navigate, Outlet, RouterProvider} from 'react-router-dom';
 import './styles.css';
+import 'rsuite/dist/rsuite.min.css';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
-import Dashboard from './pages/Dashboard/Dashboard'; // 기본 시작화면으로 설정할 대시보드
+import Dashboard from './pages/Dashboard/Dashboard';
 import LoginPage from './pages/Login/LoginPage';
 import SignupPage from './pages/SignUp/SignupPage';
 import Statistics from './pages/Statistics/Statistics';
@@ -14,17 +15,27 @@ import CameraManagement from './pages/CameraManagement/CameraManagement';
 import Report from './pages/Report/Report';
 import ObjectDetectResult from './pages/ObjectDetectResultList/ObjectDetectResult';
 import ImageUploader from './pages/ImageUploader/ImageUploader';
-import Publisher from './pages/Publisher';
-import Subscriber from './pages/Subscriber';
+import Publisher from './pages/CameraManagement/Publisher.jsx';
 import requestPermission from "./push-notification.js";
-import { registerServiceWorker } from "../public/register-sw.js";
+import {registerServiceWorker} from "../public/register-sw.js";
+import NotificationToastComponent from "./components/NotificationToastComponent.jsx";
+import {useToaster} from "rsuite";
 
 const App = () => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(true);
+    const toaster = useToaster();
 
-    const handleLogin = () => {
+    const handleOnMessage = (payload) => {
+        const {title, body, imageUrl, infoId} = payload.data
+        return toaster.push(
+            <NotificationToastComponent title={title} datetime={body} image={imageUrl}/>,
+            {placement: 'bottomEnd'}
+        )
+    }
+
+    const handleLogin = (email) => {
         setIsAuthenticated(true);
-        requestPermission();
+        requestPermission(email, handleOnMessage)
         registerServiceWorker();
     };
 
@@ -35,46 +46,47 @@ const App = () => {
     const router = createBrowserRouter([
         {
             path: "/login",
-            element: <LoginPage onLogin={handleLogin} />
+            element: <LoginPage onLogin={handleLogin}/>
         },
         {
             path: "/signup",
-            element: <SignupPage />
+            element: <SignupPage/>
+        },
+        {
+            path: "/publisher",
+            element: <Publisher/>
         },
         {
             path: "/",
             element: isAuthenticated ? (
                 <>
-                    <Sidebar />
+                    <Sidebar/>
                     <div className="main-content">
-                        <Header onLogout={handleLogout} />
-                        <Outlet />
+                        <Header onLogout={handleLogout}/>
+                        <Outlet/>
                     </div>
                 </>
-            ) : <Navigate to="/login" />,
+            ) : <Navigate to="/login"/>,
             children: [
-                { path: "", element: <Dashboard /> },  // 기본 경로에 Dashboard 설정
-                { path: "dashboard", element: <Dashboard /> },
-                { path: "statistics", element: <Statistics /> },
-                { path: "history", element: <History /> },
-                { path: "history/:incidentId", element: <HistoryRecordDetail /> }, 
-                { path: "camera-management", element: <CameraManagement /> },
-                { path: "report", element: <Report /> },
-                { path: "object-detect", element: <ObjectDetectResult /> },
-                { path: "upload", element: <ImageUploader /> },
-                { path: "publisher", element: <Publisher /> },
-                { path: "subscriber", element: <Subscriber /> },
-                { path: "*", element: <Navigate to="/" /> }
+                {path: "", element: <Dashboard/>},
+                {path: "statistics", element: <Statistics/>},
+                {path: "history", element: <History/>},
+                {path: "history/:incidentId", element: <HistoryRecordDetail/>},
+                {path: "camera-management", element: <CameraManagement/>},
+                {path: "report", element: <Report/>},
+                {path: "object-detect", element: <ObjectDetectResult/>},
+                {path: "image-upload", element: <ImageUploader/>},
+                {path: "*", element: <Navigate to="/"/>}
             ]
         },
-        { path: "*", element: <Navigate to={isAuthenticated ? "/" : "/login"} /> }
+        {path: "*", element: <Navigate to={isAuthenticated ? "/" : "/login"}/>}
     ]);
 
     return (
-        <RouterProvider router={router} />
+        <RouterProvider router={router}/>
     );
 };
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <App />
+    <App/>
 );

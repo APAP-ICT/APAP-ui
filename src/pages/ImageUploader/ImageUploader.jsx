@@ -8,13 +8,8 @@ const ImageUploader = () => {
     const [previewUrl, setPreviewUrl] = useState('');
     const navigate = useNavigate();
 
-    const handleClickMain = () => {
-        navigate('/')
-    }
-
     const handleFileChange = (files) => {
         const file = files[0];
-
         setPhoto(file);
         const reader = new FileReader();
         reader.onload = () => {
@@ -25,29 +20,35 @@ const ImageUploader = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        await ai.detectImage(photo)
-        alert('객체 탐지 성공')
+        if (photo) {
+            await ai.detectImage(photo);
+            alert('객체 탐지 성공');
+        } else {
+            alert('이미지를 선택해 주세요.');
+        }
     };
 
     return (
-        <div className="photo-uploader" style={{maxWidth: '1200px', margin: '0 auto'}}>
+        <div className="photo-uploader">
             {photo && (
                 <div className="preview-container">
-                    <img className="photo-preview" src={previewUrl} alt="Preview"
-                         style={{maxWidth: '100%', height: 'auto'}}/>
+                    <img className="photo-preview" src={previewUrl} alt="Preview"/>
                 </div>
             )}
-            <div className="input-container" style={{marginTop: '30px'}}>
-                <input type="file" accept="image/png, image/jpeg" onChange={(e) => handleFileChange(e.target.files)}/>
+            <div className="input-container">
+                <input
+                    type="file"
+                    accept="image/png, image/jpeg"
+                    onChange={(e) => handleFileChange(e.target.files)}
+                />
                 <button
                     className="upload-button"
-                    type="submit"
+                    type="button"
                     onClick={handleSubmit}
                 >
                     이미지 업로드
                 </button>
             </div>
-            <button onClick={handleClickMain}>메인</button>
         </div>
     );
 }

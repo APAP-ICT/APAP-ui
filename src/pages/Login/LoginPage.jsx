@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // useNavigate 훅 임포트
+import {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import './LoginPage.css';
 
-const LoginPage = ({ onLogin }) => {
+
+const accessibleUserNames = ['qwer@gmail.com', 'qwer2@gmail.com', 'qwer3@gmail.com']
+
+const LoginPage = ({onLogin}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault();
-        // 로그인 처리 로직
-        if (username === 'qwer' && password === '1234') {
+
+        if (accessibleUserNames.includes(username) && password === '1234') {
             alert('로그인 성공!');
-            onLogin(); // 로그인 상태 업데이트
+            onLogin(username);
             navigate('/');
         } else {
             alert('로그인 실패: 잘못된 아이디 또는 비밀번호입니다.');

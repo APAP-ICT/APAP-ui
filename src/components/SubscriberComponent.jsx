@@ -1,11 +1,14 @@
-import React, {useEffect, useRef, useState} from 'react';
-import ConnectionStatus from "../components/ConnectionStatus.jsx";
+import {useEffect, useRef, useState} from 'react';
+import ConnectionStatusComponent from "./ConnectionStatusComponent.jsx";
 import defaultImage from '../assets/loading.png';
 
-const Subscriber = () => {
+const SubscriberComponent = ({locationName}) => {
     const imgRef = useRef(null);
     const socketRef = useRef(null);
     const [isConnected, setConnected] = useState(false);
+    const resolveSubscriberAddress = (locationName) => {
+        return `${import.meta.env.VITE_WS_SUBSCRIBER}/${locationName}`
+    }
     const handleOnErrorLoadingImage = () => {
         imgRef.current.src = defaultImage
     }
@@ -14,23 +17,21 @@ const Subscriber = () => {
         const imgElement = imgRef.current;
         imgElement.src = defaultImage
 
-        const socket = new WebSocket(import.meta.env.VITE_WS_SUBSCRIBER);
+        const socket = new WebSocket(resolveSubscriberAddress(locationName));
         socket.binaryType = 'arraybuffer';
         socketRef.current = socket;
 
         socket.onopen = () => {
             setConnected(true);
-            console.log('WebSocket connection opened');
         };
 
         socket.onclose = () => {
             setConnected(false);
-            console.log('WebSocket connection closed');
         };
 
         socket.onerror = (error) => {
-            setConnected(false)
-            console.error('WebSocket error:', error);
+            setConnected(false);
+            console.error(error);
         };
 
         socket.onmessage = (event) => {
@@ -45,11 +46,10 @@ const Subscriber = () => {
 
     return (
         <div>
-            <h1>Viewer</h1>
-            <ConnectionStatus isConnected={isConnected}/>
+            <ConnectionStatusComponent isConnected={isConnected}/>
             <img ref={imgRef} alt="Video Stream" onError={handleOnErrorLoadingImage}/>
         </div>
     );
 };
 
-export default Subscriber;
+export default SubscriberComponent;

@@ -1,5 +1,5 @@
-# APAP-front
-스마트해상물류 ICT-2024-APAP-front
+# APAP-ui
+스마트해상물류 ICT-2024
 
 ### Install
 ```shell
@@ -10,4 +10,3 @@ npm install
 ```shell
 npm run dev
 ```
->>>>>>> main

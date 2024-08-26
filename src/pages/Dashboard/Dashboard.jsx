@@ -1,6 +1,37 @@
-import React, { useState } from 'react';
+import {useState} from 'react';
 import axios from 'axios';
 import './Dashboard.css';
+import SubscriberComponent from "../../components/SubscriberComponent.jsx";
+import {Timeline} from "rsuite";
+import CheckIcon from '@rsuite/icons/legacy/Check';
+
+
+const HistoryTimeLineComponent = ({area, histories}) => {
+    const concatTimelineTitle = (history) => {
+        return `${history.date} ${history.description}`
+    }
+
+    const defineStatusStyle = (status) => {
+        if (status === 'alert') {
+            return {background: '#FF0000', color: '#FF0000'}
+        } else if (status === 'warning') {
+            return {background: '#FFFF00', color: '#FFFF00'}
+        }
+    }
+
+    return (
+        <>
+            <h2>{area} 구역의 이상상황 타임라인</h2>
+            <Timeline>
+                {histories && histories.map(history => {
+                    return <Timeline.Item dot={<CheckIcon style={defineStatusStyle(history.status)}/>}>
+                        {concatTimelineTitle(history)}
+                    </Timeline.Item>
+                })}
+            </Timeline>
+        </>
+    )
+}
 
 const Dashboard = () => {
     const [selectedArea, setSelectedArea] = useState(null);
@@ -45,14 +76,14 @@ const Dashboard = () => {
                 <h1>대시보드</h1>
             </header>
             <div className="dashboard-content">
-                {['A-101', 'A-102', 'A-103', 'A-104'].map((area) => (
+                {['A-101', 'A-102'].map((area) => (
                     <div
                         key={area}
                         className={`card ${selectedArea === area ? 'selected' : ''}`}
                         onClick={() => handleAreaClick(area)}
                     >
                         <h2>{area} 구역</h2>
-                        <div className="video-placeholder">비디오 스트리밍</div>
+                        <SubscriberComponent locationName={area}/>
                     </div>
                 ))}
             </div>
@@ -74,7 +105,7 @@ const Dashboard = () => {
                 </div>
             )}
         </div>
-    );
+    )
 };
 
 export default Dashboard;
