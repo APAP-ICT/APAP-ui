@@ -13,8 +13,8 @@ const Notification = () => {
             const formattedAlerts = response.data.map((item) => ({
                 id: item.id,
                 cameraName: item.cameraName,
-                localDateTime: item.localDateTime,
-                imageUrl: item.imageUrl,
+                localDateTime: new Date(item.localDateTime).toLocaleString(),  // 날짜를 먼저 변환
+                label: item.label,
             }));
             setAlerts(formattedAlerts);
         } catch (error) {
@@ -58,17 +58,15 @@ const Notification = () => {
                                 <tr>
                                     <th>카메라 이름</th>
                                     <th>발생 시간</th>
-                                    <th>이미지</th>
+                                    <th>탐지 결과</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {alerts.map((alert) => (
                                     <tr key={alert.id}>
                                         <td>{alert.cameraName}</td>
-                                        <td>{new Date(alert.localDateTime).toLocaleString()}</td>
-                                        <td>
-                                            <img src={alert.imageUrl} alt="알림 이미지" style={{ maxWidth: '100px' }} />
-                                        </td>
+                                        <td>{alert.localDateTime}</td> {/* 날짜만 표시 */}
+                                        <td style={{ whiteSpace: 'pre-wrap' }}>{alert.label}</td>  {/* 탐지 결과만 표시 */}
                                     </tr>
                                 ))}
                             </tbody>
