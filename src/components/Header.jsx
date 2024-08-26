@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import LogoutModal from '../pages/Login/LogoutModal.jsx';
-import Notification from './Notification';
+import NotificationListComponent from './NotificationListComponent.jsx';
 import '../styles.css';
 
 const Header = ({onLogout, userName = '항만관리자123'}) => {
@@ -26,7 +26,7 @@ const Header = ({onLogout, userName = '항만관리자123'}) => {
                 <button className="user-name-button" onClick={handleUserNameClick}>
                     {userName}
                 </button>
-                <Notification/>
+                <NotificationListComponent/>
             </div>
             <LogoutModal
                 isOpen={isLogoutModalOpen}
