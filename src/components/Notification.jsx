@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import '../styles.css';
 
@@ -13,10 +13,8 @@ const Notification = () => {
             const formattedAlerts = response.data.map((item) => ({
                 id: item.id,
                 cameraName: item.cameraName,
-                alertMessage: item.label,
                 localDateTime: item.localDateTime,
                 imageUrl: item.imageUrl,
-                description: item.description
             }));
             setAlerts(formattedAlerts);
         } catch (error) {
@@ -55,19 +53,26 @@ const Notification = () => {
                 <div className="modal-overlay">
                     <div className="modal-content" ref={modalRef}>
                         <h2>알림 내용</h2>
-                        <ul>
-                            {alerts.map((alert) => (
-                                <li key={alert.id}>
-                                    카메라 이름: {alert.cameraName} - 사고 내용: {alert.alertMessage}
-                                    <br/>
-                                    시간: {new Date(alert.localDateTime).toLocaleString()}
-                                    <br/>
-                                    설명: {alert.description}
-                                    <br/>
-                                    <img src={alert.imageUrl} alt="알림 이미지" style={{maxWidth: '200px'}}/>
-                                </li>
-                            ))}
-                        </ul>
+                        <table className="alert-table">
+                            <thead>
+                                <tr>
+                                    <th>카메라 이름</th>
+                                    <th>발생 시간</th>
+                                    <th>이미지</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {alerts.map((alert) => (
+                                    <tr key={alert.id}>
+                                        <td>{alert.cameraName}</td>
+                                        <td>{new Date(alert.localDateTime).toLocaleString()}</td>
+                                        <td>
+                                            <img src={alert.imageUrl} alt="알림 이미지" style={{ maxWidth: '100px' }} />
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                         <button onClick={handleCloseModal}>닫기</button>
                     </div>
                 </div>
