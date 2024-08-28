@@ -8,9 +8,9 @@ export default {
             params.append("cameraName", req.cameraName);
         }
 
-        if (req.date) {
-            params.append("startDate", req.date);
-            params.append("endDate", req.date);
+        if (req.startDate && req.endDate) {
+            params.append("startDate", req.startDate);
+            params.append("endDate", req.endDate);
         }
 
         return HISTORY_API.get(`/api/infos?${params.toString()}`);

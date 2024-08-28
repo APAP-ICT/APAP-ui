@@ -4,7 +4,7 @@ import SubscriberComponent from "../../components/SubscriberComponent.jsx";
 import {Timeline} from "rsuite";
 import CheckIcon from '@rsuite/icons/legacy/Check';
 import history from "../../api/history.js";
-import {datetimeFormat} from "../../util/utils.js";
+import {dateFormat, datetimeFormat} from "../../util/utils.js";
 
 const HistoryTimeLineComponent = ({area, histories}) => {
     const concatTimelineTitle = (history) => {
@@ -19,8 +19,7 @@ const HistoryTimeLineComponent = ({area, histories}) => {
         }
     }
 
-    return (
-        <>
+    return (<>
             <h2>{area} 구역의 이상상황 타임라인</h2>
             <Timeline>
                 {histories && histories.map(history => {
@@ -29,8 +28,7 @@ const HistoryTimeLineComponent = ({area, histories}) => {
                     </Timeline.Item>
                 })}
             </Timeline>
-        </>
-    )
+        </>)
 }
 
 const Dashboard = () => {
@@ -39,37 +37,33 @@ const Dashboard = () => {
 
     const handleAreaClick = async (area) => {
         setSelectedArea(area);
+        const now = dateFormat(new Date().toDateString());
         const results = await history.fetchDetectResults({
-            cameraName: area
+            cameraName: area, startDate: now, endDate: now
+
         })
 
         setSelectedHistory(results);
     };
 
-    return (
-        <div className="dashboard">
+    return (<div className="dashboard">
             <header className="dashboard-header">
                 <h1>대시보드</h1>
             </header>
             <div className="dashboard-content">
-                {['A-101', 'A-102'].map((area) => (
-                    <div
+                {['A-101', 'A-102'].map((area) => (<div
                         key={area}
                         className={`card ${selectedArea === area ? 'selected' : ''}`}
                         onClick={() => handleAreaClick(area)}
                     >
                         <h2>{area} 구역</h2>
                         <SubscriberComponent locationName={area}/>
-                    </div>
-                ))}
+                    </div>))}
             </div>
-            {selectedArea && (
-                <div className="timeline-content">
+            {selectedArea && (<div className="timeline-content">
                     <HistoryTimeLineComponent area={selectedArea} histories={selectedHistory}/>
-                </div>
-            )}
-        </div>
-    )
+                </div>)}
+        </div>)
 };
 
 export default Dashboard;
