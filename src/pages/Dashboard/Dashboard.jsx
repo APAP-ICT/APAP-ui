@@ -20,16 +20,18 @@ const HistoryTimeLineComponent = ({area, histories}) => {
     }
 
     return (<>
-            <h2>{area} 구역의 이상상황 타임라인</h2>
-            <Timeline>
-                {histories && histories.map(history => {
-                    return <Timeline.Item dot={<CheckIcon style={defineStatusStyle(history.status)}/>}>
-                        {concatTimelineTitle(history)}
-                    </Timeline.Item>
-                })}
-            </Timeline>
-        </>)
+        <h2>{area} 구역의 이상상황 타임라인</h2>
+        <Timeline>
+            {histories && histories.map(history => {
+                return <Timeline.Item dot={<CheckIcon style={defineStatusStyle(history.status)}/>}>
+                    {concatTimelineTitle(history)}
+                </Timeline.Item>
+            })}
+        </Timeline>
+    </>)
 }
+
+const cameraLocations = ['신선대부두', '양곡부두', '감천항', '연합부두'];
 
 const Dashboard = () => {
     const [selectedArea, setSelectedArea] = useState(null);
@@ -40,30 +42,29 @@ const Dashboard = () => {
         const now = dateFormat(new Date().toDateString());
         const results = await history.fetchDetectResults({
             cameraName: area, startDate: now, endDate: now
-
         })
 
         setSelectedHistory(results);
     };
 
     return (<div className="dashboard">
-            <header className="dashboard-header">
-                <h1>대시보드</h1>
-            </header>
-            <div className="dashboard-content">
-                {['A-101', 'A-102'].map((area) => (<div
-                        key={area}
-                        className={`card ${selectedArea === area ? 'selected' : ''}`}
-                        onClick={() => handleAreaClick(area)}
-                    >
-                        <h2>{area} 구역</h2>
-                        <SubscriberComponent locationName={area}/>
-                    </div>))}
-            </div>
-            {selectedArea && (<div className="timeline-content">
-                    <HistoryTimeLineComponent area={selectedArea} histories={selectedHistory}/>
-                </div>)}
-        </div>)
+        <header className="dashboard-header">
+            <h1>대시보드</h1>
+        </header>
+        <div className="dashboard-content">
+            {cameraLocations.map((area) => (<div
+                key={area}
+                className={`card ${selectedArea === area ? 'selected' : ''}`}
+                onClick={() => handleAreaClick(area)}
+            >
+                <h2>{area} 구역</h2>
+                <SubscriberComponent locationName={area}/>
+            </div>))}
+        </div>
+        {selectedArea && (<div className="timeline-content">
+            <HistoryTimeLineComponent area={selectedArea} histories={selectedHistory}/>
+        </div>)}
+    </div>)
 };
 
 export default Dashboard;

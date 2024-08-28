@@ -1,6 +1,7 @@
 import {useEffect, useRef, useState} from 'react';
 import ConnectionStatusComponent from "./ConnectionStatusComponent.jsx";
 import defaultImage from '../assets/loading.png';
+import './SubscriberComponent.css'
 
 const SubscriberComponent = ({locationName}) => {
     const imgRef = useRef(null);
@@ -47,7 +48,9 @@ const SubscriberComponent = ({locationName}) => {
     return (
         <div>
             <ConnectionStatusComponent isConnected={isConnected}/>
-            <img ref={imgRef} alt="Video Stream" onError={handleOnErrorLoadingImage}/>
+            <div className="subscriber-container">
+                <img className="subscriber-image" ref={imgRef} alt="Video Stream" onError={handleOnErrorLoadingImage}/>
+            </div>
         </div>
     );
 };
