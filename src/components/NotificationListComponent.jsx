@@ -1,7 +1,7 @@
 import {useEffect, useRef, useState} from "react";
 import '../styles.css';
 import history from "../api/history.js";
-import {datetimeFormat} from "../util/utils.js";
+import {datetimeFormat, replaceOperationType} from "../util/utils.js";
 import {useNavigate} from "react-router-dom";
 
 const NotificationListComponent = () => {
@@ -65,7 +65,7 @@ const NotificationListComponent = () => {
                                 <tr key={alert.id} onClick={()=>handleAlertOnClick(alert.id)}>
                                     <td>{alert.cameraName}</td>
                                     <td>{datetimeFormat(alert.localDateTime)}</td>
-                                    <td style={{whiteSpace: 'pre-wrap'}}>{alert.label}</td>
+                                    <td style={{whiteSpace: 'pre-wrap'}}>{replaceOperationType(alert.label)}</td>
                                 </tr>
                             ))}
                             </tbody>

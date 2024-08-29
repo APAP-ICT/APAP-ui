@@ -1,7 +1,7 @@
 .container {
-    display: flex; 
+    display: flex;
     max-width: 1000px;
-    min-height: 600px; 
+    min-height: 600px;
     margin: auto;
     position: relative;
     padding-right: 270px;
@@ -17,11 +17,11 @@
     background-color: #f0f0f0;
     border-radius: 8px;
     padding: 10px;
-    position: absolute; 
-    right: 0; 
+    position: absolute;
+    right: 0;
     top: 0;
-    height: auto; 
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+    height: auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .title {
@@ -31,11 +31,10 @@
 
 .videoContainer {
     background-color: #e0e0e0;
-    height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
 }
 
 .playIcon {
@@ -44,7 +43,7 @@
 }
 
 .details {
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
 }
 
 .relatedItems {
@@ -55,7 +54,7 @@
 
 .relatedItem {
     background: #e0e0e0;
-    padding: 5px; 
+    padding: 5px;
     border-radius: 5px;
     text-align: center;
     cursor: pointer;
@@ -71,13 +70,13 @@
 }
 
 .backButton {
-    background: none;  
-    border: none; 
-    font-size: 24px; 
-    cursor: pointer;  
-    color: #555; 
-    outline: none;  
-    padding: 0;  
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #555;
+    outline: none;
+    padding: 0;
 }
 
 .backButton:hover {

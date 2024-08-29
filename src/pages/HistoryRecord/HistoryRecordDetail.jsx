@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './HistoryRecordDetail.css';
 import history from "../../api/history.js";
+import {replaceOperationType} from "../../util/utils.js";
 
 const HistoryRecordDetail = () => {
     const { incidentId } = useParams();
@@ -31,7 +32,7 @@ const HistoryRecordDetail = () => {
                 </button>
             </div>
             <div className="mainContent">
-                <h1 className="title">{incident.date}_{incident.label}</h1>
+                <h1 className="title">{replaceOperationType(incident.label)}</h1>
                 <div className="videoContainer">
                     {/* 서버에서 가져온 실제 사진을 표시 */}
                     {incident.imageUrl ? (
