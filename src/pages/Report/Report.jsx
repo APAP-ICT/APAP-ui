@@ -3,7 +3,7 @@ import './Report.css';
 
 const Report = () => {
     const [selectedDate, setSelectedDate] = useState(null);
-    const [selectedMonth, setSelectedMonth] = useState(6); // 기본값: 7월 (0-11로 표현)
+    const [selectedMonth, setSelectedMonth] = useState(6);
     const months = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
 
     const handleDateClick = (date) => {
@@ -18,8 +18,19 @@ const Report = () => {
         }
     };
 
+    const handleMonthChange = (direction) => {
+        setSelectedMonth((prevMonth) => {
+            if (direction === 'prev') {
+                return prevMonth === 0 ? 11 : prevMonth - 1;
+            } else {
+                return prevMonth === 11 ? 0 : prevMonth + 1;
+            }
+        });
+        setSelectedDate(null);
+    };
+
     const renderCalendar = () => {
-        const daysInMonth = new Date(2024, selectedMonth + 1, 0).getDate(); // 선택한 월의 마지막 날
+        const daysInMonth = new Date(2024, selectedMonth + 1, 0).getDate();
         const calendarDays = [];
 
         for (let i = 1; i <= daysInMonth; i++) {
@@ -39,14 +50,16 @@ const Report = () => {
 
     return (
         <div className="reportContainer">
-            <h1>보고서</h1>
-            <h3>날짜를 선택해주세요.</h3>
-            <select value={selectedMonth} onChange={(e) => setSelectedMonth(Number(e.target.value))}>
-                {months.map((month, index) => (
-                    <option key={index} value={index}>{month}</option>
-                ))}
-            </select>
-            <h3>{months[selectedMonth]}</h3>
+            {selectedDate ? (
+                <h3>선택한 날짜: {selectedMonth + 1}월 {selectedDate}일</h3>
+            ) : (
+                <h3> </h3>
+            )}
+            <div className="monthSelector">
+                <button className="arrowButton" onClick={() => handleMonthChange('prev')}>^</button>
+                <h3 className="monthLabel">{months[selectedMonth]}</h3>
+                <button className="arrowButton" onClick={() => handleMonthChange('next')}>v</button>
+            </div>
             <div className="calendarGrid">
                 {renderCalendar()}
             </div>

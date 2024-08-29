@@ -65,3 +65,21 @@
 .relatedItem:hover {
     background: #d4d4d4;
 }
+
+.backButtonContainer {
+    margin-bottom: 15px;
+}
+
+.backButton {
+    background: none;  
+    border: none; 
+    font-size: 24px; 
+    cursor: pointer;  
+    color: #555; 
+    outline: none;  
+    padding: 0;  
+}
+
+.backButton:hover {
+    color: #333;
+}

@@ -20,11 +20,26 @@
 
 .incident-list-filters input,
 .incident-list-filters select {
-    padding: 10px;
+    padding: 5px; /* 여백을 줄여서 글씨가 가로로 보이도록 조정 */
     border-radius: 5px;
     border: 1px solid #ccc;
     background-color: white;
     font-size: 14px;
+    min-width: 150px; /* 최소 너비를 설정하여 글씨가 가로로 나오도록 */
+}
+
+.search-button {
+    padding: 8px 16px; /* 버튼 박스의 여백을 조정 */
+    border-radius: 5px;
+    background-color: #007bff; /* 파란색 배경 */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.search-button:hover {
+    background-color: #0056b3; /* 호버 시 색상 */
 }
 
 .incident-list-grid {

@@ -1,31 +1,46 @@
-import React, {useEffect, useState} from 'react';
-import {useParams} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import './HistoryRecordDetail.css';
 import history from "../../api/history.js";
 
 const HistoryRecordDetail = () => {
-    const {incidentId} = useParams();
+    const { incidentId } = useParams();
     const [incident, setIncident] = useState(null);
+    const navigate = useNavigate();
 
     const fetchIncidentDetail = async () => {
         const result = await history.fetchDetectResult(incidentId);
-        setIncident(result)
+        setIncident(result);
     };
 
     useEffect(() => {
         fetchIncidentDetail();
     }, [incidentId]);
 
+    const handleBackClick = () => {
+        navigate(-1);
+    };
+
     if (!incident) return <p>해당 사건을 찾을 수 없습니다.</p>;
 
     return (
         <div className="container">
+            <div className="backButtonContainer">
+                <button className="backButton" onClick={handleBackClick}>
+                    ←
+                </button>
+            </div>
             <div className="mainContent">
                 <h1 className="title">{incident.date}_{incident.label}</h1>
                 <div className="videoContainer">
-                    <div className="videoPlaceholder">
-                        <span className="playIcon">▶</span>
-                    </div>
+                    {/* 서버에서 가져온 실제 사진을 표시 */}
+                    {incident.imageUrl ? (
+                        <img src={incident.imageUrl} alt="사고 이미지" className="incident-image" />
+                    ) : (
+                        <div className="videoPlaceholder">
+                            <span className="playIcon">▶</span>
+                        </div>
+                    )}
                 </div>
                 <div className="details">
                     <h2>발생시간</h2>
