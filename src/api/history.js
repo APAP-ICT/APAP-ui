@@ -1,4 +1,5 @@
 import {HISTORY_API} from "./request.js";
+import {saveAs} from 'file-saver';
 
 export default {
     fetchDetectResults(req) {
@@ -23,5 +24,17 @@ export default {
             token: token,
             email: email
         })
+    },
+    async downloadDailyReport() {
+        const data = await HISTORY_API.get("/api/report", {
+            responseType: 'blob'
+        })
+
+        //TODO 추후 하드코딩 수정
+        const filename = '2024_08_30_daily_report.pdf'
+        const pdfBlob = new Blob([data], {type: 'application/pdf'});
+
+        saveAs(pdfBlob, filename);
+
     }
 }

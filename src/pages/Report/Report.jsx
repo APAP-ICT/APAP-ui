@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './Report.css';
+import history from "../../api/history.js";
+
 
 const Report = () => {
     const [selectedDate, setSelectedDate] = useState(null);
@@ -10,9 +12,10 @@ const Report = () => {
         setSelectedDate(date);
     };
 
-    const handleDownload = () => {
+    const handleDownload = async () => {
         if (selectedDate) {
             alert(`보고서를 ${selectedMonth + 1}월 ${selectedDate}일에 다운로드합니다.`);
+            history.downloadDailyReport()
         } else {
             alert('날짜를 선택해주세요.');
         }
