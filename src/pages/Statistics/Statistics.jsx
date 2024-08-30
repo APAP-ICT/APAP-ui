@@ -7,17 +7,19 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend,
 
 const Statistics = () => {
     const [barData, setBarData] = useState(null);
-    const [doughnutData, setDoughnutData] = useState(null); 
+    const [doughnutData, setDoughnutData] = useState(null);
     const [timeFilter, setTimeFilter] = useState('1w'); 
     const [portFilter, setPortFilter] = useState('all'); 
+    const [portStats, setPortStats] = useState({ fire: '', machineFailure: '', helmetIssue: '' });
 
     useEffect(() => {
         const fetchData = async () => {
             let fetchedBarData;
             let fetchedDoughnutData;
-            
+            let fetchedPortStats;
+
             switch (portFilter) {
-                case '신선대부두 구역':
+                case '신선대부두':
                     fetchedBarData = {
                         labels: ['2024-08-15', '2024-08-16', '2024-08-17'],
                         datasets: [
@@ -32,8 +34,13 @@ const Statistics = () => {
                         labels: ['화재', '기계 고장', '화학물질 유출', '안전모 미착용', '무단 침입'],
                         datasets: [{ data: [30, 20, 10, 25, 15], backgroundColor: ['#ff6384', '#36a2eb', '#ffcd56', '#4bc0c0', '#9966ff'] }],
                     };
+                    fetchedPortStats = {
+                        fire: '지난 주 대비 10% 상승',
+                        machineFailure: '지난 주 대비 5% 하락',
+                        helmetIssue: '지난 달 대비 15% 상승',
+                    };
                     break;
-                case '양곡부두 구역':
+                case '양곡부두':
                     fetchedBarData = {
                         labels: ['2024-08-15', '2024-08-16', '2024-08-17'],
                         datasets: [
@@ -47,6 +54,11 @@ const Statistics = () => {
                     fetchedDoughnutData = {
                         labels: ['화재', '기계 고장', '화학물질 유출', '안전모 미착용', '무단 침입'],
                         datasets: [{ data: [25, 20, 25, 15, 15], backgroundColor: ['#ff6384', '#36a2eb', '#ffcd56', '#4bc0c0', '#9966ff'] }],
+                    };
+                    fetchedPortStats = {
+                        fire: '지난 주 대비 3% 상승',
+                        machineFailure: '지난 주 대비 10% 상승',
+                        helmetIssue: '지난 달 대비 8% 하락',
                     };
                     break;
                 default:
@@ -64,10 +76,16 @@ const Statistics = () => {
                         labels: ['화재', '기계 고장', '화학물질 유출', '안전모 미착용', '무단 침입'],
                         datasets: [{ data: [25, 25, 15, 25, 10], backgroundColor: ['#ff6384', '#36a2eb', '#ffcd56', '#4bc0c0', '#9966ff'] }],
                     };
+                    fetchedPortStats = {
+                        fire: '지난 주 대비 5% 상승',
+                        machineFailure: '지난 주 대비 3% 하락',
+                        helmetIssue: '지난 달 대비 10% 상승',
+                    };
             }
 
             setBarData(fetchedBarData);
             setDoughnutData(fetchedDoughnutData);
+            setPortStats(fetchedPortStats);
         };
 
         fetchData();
@@ -85,23 +103,23 @@ const Statistics = () => {
                 </select>
                 <select value={portFilter} onChange={(e) => setPortFilter(e.target.value)}>
                     <option value="all">모든 항만</option>
-                    <option value="부산항">신선대부두</option>
-                    <option value="인천항">양곡부두</option>
+                    <option value="신선대부두">신선대부두</option>
+                    <option value="양곡부두">양곡부두</option>
                 </select>
             </div>
 
             <div className="statisticsCard">
                 <div className="statisticItem">
                     <h2>화재</h2>
-                    <p>지난 주 대비 10% 상승</p>
+                    <p>{portStats.fire}</p>
                 </div>
                 <div className="statisticItem">
                     <h2>기계 고장</h2>
-                    <p>지난 주 대비 5% 하락</p>
+                    <p>{portStats.machineFailure}</p>
                 </div>
                 <div className="statisticItem">
                     <h2>안전모 미착용</h2>
-                    <p>지난 달 대비 15% 상승</p>
+                    <p>{portStats.helmetIssue}</p>
                 </div>
             </div>
 
@@ -112,23 +130,22 @@ const Statistics = () => {
 
             <h2>최근 이상상황 종류별 비율</h2>
             <div className="chartContainer">
-    {doughnutData ? (
-        <>
-            <Doughnut data={doughnutData} options={{ responsive: true, plugins: { legend: { display: false } } }} />
-            <div className="doughnut-legend">
-                {doughnutData.labels.map((label, index) => (
-                    <div className="doughnut-legend-item" key={index}>
-                        <div className="doughnut-legend-color" style={{ backgroundColor: doughnutData.datasets[0].backgroundColor[index] }}></div>
-                        <span>{label}</span>
-                    </div>
-                ))}
+                {doughnutData ? (
+                    <>
+                        <Doughnut data={doughnutData} options={{ responsive: true, plugins: { legend: { display: false } } }} />
+                        <div className="doughnut-legend">
+                            {doughnutData.labels.map((label, index) => (
+                                <div className="doughnut-legend-item" key={index}>
+                                    <div className="doughnut-legend-color" style={{ backgroundColor: doughnutData.datasets[0].backgroundColor[index] }}></div>
+                                    <span>{label}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </>
+                ) : (
+                    <p>로딩 중...</p>
+                )}
             </div>
-        </>
-    ) : (
-        <p>로딩 중...</p>
-    )}
-</div>
-
         </div>
     );
 };

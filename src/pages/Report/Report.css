@@ -1,73 +1,73 @@
 .reportContainer {
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 20px;
-}
-
-.calendarGrid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
-    margin: 20px 0;
-}
-
-.calendarDay {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #e0f7fa;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    margin: 20px auto;
+}
+
+h3 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 18px;
+    text-align: center;
+}
+
+.controlRow {
+    display: flex; /* 수평으로 배치 */
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    gap: 10px; /* 요소 간격 */
+    margin-bottom: 20px; /* 아래 여백 */
+}
+
+.dropdownContainer {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* 레이블과 드롭다운 사이의 간격 */
+}
+
+.dropdownContainer label {
+    font-size: 16px;
+    color: #555;
+}
+
+select {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    background-color: #fff;
     cursor: pointer;
-    transition: background-color 0.3s;
+    height: 40px; /* 드롭다운 높이 통일 */
 }
 
-.calendarDay:hover {
-    background-color: #b2ebf2;
-}
-
-.calendarDay.selected {
-    background-color: #00bcd4;
-    color: white;
+select:focus {
+    outline: none;
+    border-color: #007bff;
 }
 
 .downloadButton {
     padding: 10px 20px;
-    background-color: #00bcd4;
-    color: white;
+    background-color: #007bff;
+    color: #fff;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
     font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    height: 40px; /* 버튼 높이 드롭다운과 동일하게 */
 }
 
 .downloadButton:hover {
-    background-color: #0097a7;
+    background-color: #0056b3;
 }
 
-.monthSelector {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.arrowButton {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    padding: 0 10px;
-    line-height: 1;
-}
-
-.arrowButton:hover {
-    color: #0056b3;
-}
-
-.monthLabel {
-    margin: 0 10px;
-    font-size: 32px;
+.downloadButton:focus {
+    outline: none;
 }
