@@ -4,11 +4,11 @@ import SubscriberComponent from "../../components/SubscriberComponent.jsx";
 import {Timeline} from "rsuite";
 import CheckIcon from '@rsuite/icons/legacy/Check';
 import history from "../../api/history.js";
-import {dateFormat, datetimeFormat} from "../../util/utils.js";
+import {dateFormat, datetimeFormat, replaceOperationType} from "../../util/utils.js";
 
 const HistoryTimeLineComponent = ({area, histories}) => {
     const concatTimelineTitle = (history) => {
-        return `${datetimeFormat(history.localDateTime)} 발생 이상현상 : ${history.label}`
+        return `${datetimeFormat(history.localDateTime)} 발생 이상현상 : ${replaceOperationType(history.label)}`
     }
 
     const defineStatusStyle = (status) => {
@@ -31,7 +31,7 @@ const HistoryTimeLineComponent = ({area, histories}) => {
     </>)
 }
 
-const cameraLocations = ['신선대부두', '양곡부두', '감천항', '연합부두'];
+const cameraLocations = ['신선대부두', '양곡부두'];
 
 const Dashboard = () => {
     const [selectedArea, setSelectedArea] = useState(null);

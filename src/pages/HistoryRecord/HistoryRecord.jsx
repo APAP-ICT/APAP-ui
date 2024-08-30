@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import './HistoryRecord.css';
-import {dateFormat} from "../../util/utils.js";
+import {dateFormat, replaceOperationType} from "../../util/utils.js";
 import history from "../../api/history.js";
 
 const incidentTypes = [
@@ -47,12 +47,13 @@ const HistoryRecord = () => {
 
         try {
             const results = await history.fetchDetectResults({
-                cameraName: cameraLocation, 
-                startDate: startDate, 
+                cameraName: cameraLocation,
+                startDate: startDate,
                 endDate: endDate,
                 incidentType: incidentType
             });
-            setIncidents(results);
+            const sortedByDateTime = results.sort((a, b) => new Date(b.localDateTime) - new Date(a.localDateTime))
+            setIncidents(sortedByDateTime);
         } catch (error) {
             console.error('Error fetching incidents:', error);
         }
@@ -81,8 +82,6 @@ const HistoryRecord = () => {
     const handleEndDateChange = (event) => {
         setEndDate(event.target.value);
     };
-
-    const formatIncidentTitle = (dateString, description) => `${dateFormat(dateString)}_${description}`;
 
     return (
         <div className="incident-list-container">
@@ -129,9 +128,10 @@ const HistoryRecord = () => {
                         onClick={() => handleIncidentClick(incident.id)}
                     >
                         <div className="incident-thumbnail">
-                            <span className="play-icon">▶</span>
+                            <img className="incident-list-img" src={incident.imageUrl} alt=""/>
                         </div>
-                        <p className="incident-title">{formatIncidentTitle(incident.localDateTime, incident.label)}</p>
+                        <p className="incident-title">{replaceOperationType(incident.label)}</p>
+                        <p className="incident-title">{dateFormat(incident.localDateTime)}</p>
                     </div>
                 ))}
             </div>

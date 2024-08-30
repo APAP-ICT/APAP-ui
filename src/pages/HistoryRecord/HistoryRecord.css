@@ -44,9 +44,9 @@
 
 .incident-list-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 8fr));
-    gap: 18px;
-    justify-items: center; 
+    grid-template-columns: repeat(auto-fill, minmax(180px, 5fr));
+    gap: 20px;
+    justify-items: center;
 }
 
 .incident-card {
@@ -56,7 +56,7 @@
     text-align: center;
     padding: 10px;
     transition: background-color 0.3s ease;
-    width: 150px; 
+    width: 150px;
 }
 
 .incident-card:hover {
@@ -71,6 +71,11 @@
     align-items: center;
     margin-bottom: 10px;
     border-radius: 8px;
+}
+
+.incident-list-img {
+    width: 100%;
+    height: 100%;
 }
 
 .play-icon {
