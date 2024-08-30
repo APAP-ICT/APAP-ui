@@ -20,7 +20,7 @@ const dateFormat = (dateTime) => {
 const replaceOperationType = (message) => {
     return message.replace("estimate_distance", "위험물체 접근")
         .replace("area_intrusion", "위험지역 침입")
-        .replace("custom_model", "")
+        .replace("custom_model:", "")
 }
 
 export {datetimeFormat, dateFormat, replaceOperationType};
