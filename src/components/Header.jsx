@@ -3,7 +3,7 @@ import LogoutModal from '../pages/Login/LogoutModal.jsx';
 import NotificationListComponent from './NotificationListComponent.jsx';
 import '../styles.css';
 
-const Header = ({onLogout, userName = '항만관리자123'}) => {
+const Header = ({onLogout, userName = '항만관리자'}) => {
     const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
 
     const handleUserNameClick = () => {
