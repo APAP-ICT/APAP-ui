@@ -11,12 +11,20 @@ body {
 .sidebar {
     width: 200px;
     background-color: #f8f9fa;
-    padding: 0;
+    padding: 10px;
     height: 100%;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     position: fixed;
     left: 0;
     top: 0;
+    border-radius: 8px;
+    font-size: 18px; 
+}
+
+.sidebar img {
+    width: 50%;
+    height: auto;
+    margin-bottom: 15px;
 }
 
 .header {
@@ -26,20 +34,21 @@ body {
     padding: 10px;
     background: #fff;
     border-bottom: 1px solid #ccc;
+    border-radius: 8px;
 }
 
 .header-buttons {
     display: flex;
-    align-items: center; /* 버튼들을 수직으로 동일하게 정렬 */
+    align-items: center;
 }
 
 .notification-button {
-    margin-left: 10px; /* 알림 버튼을 로그아웃 버튼 옆에 위치시키기 위해 여백 추가 */
+    margin-left: 10px;
     padding: 10px 20px;
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
 }
 
@@ -49,22 +58,26 @@ body {
 
 .notification {
     margin: 10px 0;
+    border-radius: 8px;
 }
 
 .notification-item {
     padding: 8px;
     margin: 5px 0;
     border: 1px solid;
+    border-radius: 8px;
 }
 
 .alert {
     background: #f8d7da;
     border-color: #f5c6cb;
+    border-radius: 8px;
 }
 
 .warning {
     background: #fff3cd;
     border-color: #ffeeba;
+    border-radius: 8px;
 }
 
 .main-content {
@@ -77,6 +90,7 @@ body {
     height: calc(100vh - 40px);
     box-sizing: border-box;
     overflow: auto;
+    border-radius: 8px;
 }
 
 .main-content:empty {
@@ -104,7 +118,7 @@ body {
 .modal-content {
     background-color: white;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 8px;
     max-width: 80%;
     max-height: 80%;
     overflow-y: auto;
@@ -114,15 +128,18 @@ body {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    border-radius: 8px;
 }
 
 .message-table th, .message-table td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
+    border-radius: 8px;
 }
 
 .message-table th {
     background-color: #f2f2f2;
     font-weight: bold;
+    border-radius: 8px;
 }

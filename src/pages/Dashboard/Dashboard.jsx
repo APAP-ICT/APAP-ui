@@ -14,7 +14,7 @@ const HistoryTimeLineComponent = ({area, histories}) => {
     const defineStatusStyle = (status) => {
         if (status === 'alert') {
             return {background: '#FF0000', color: '#FF0000'}
-        } else { //status === 'warning'
+        } else {
             return {background: '#FFFF00', color: '#FFFF00'}
         }
     }

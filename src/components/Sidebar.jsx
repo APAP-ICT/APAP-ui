@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import '../styles.css';
+import LogoImage from './KakaoTalk_20240829_230245640.png';
 
 const sidebarItems = [
     { name: '대시보드', path: '/' },
@@ -7,8 +8,6 @@ const sidebarItems = [
     { name: '이상상황 과거이력', path: '/history' },
     { name: '카메라 관리', path: '/camera-management' },
     { name: '보고서', path: '/report' },
-    { name: '카메라', path: '/publisher' },
-    { name: '이미지 업로드', path: '/image-upload' }
 ];
 
 const Sidebar = () => {
@@ -20,7 +19,8 @@ const Sidebar = () => {
 
     return (
         <div className="sidebar">
-            <h2>APAP</h2>
+            <h1> </h1>
+            <img src={LogoImage} alt="APAP Logo" />
             {sidebarItems.map((item, index) => (
                 <div
                     key={index}

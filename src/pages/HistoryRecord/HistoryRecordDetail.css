@@ -2,14 +2,14 @@
     display: flex; 
     max-width: 1000px;
     min-height: 600px; 
-    margin: auto;
-    position: relative;
-    padding-right: 270px;
+    margin: 0 auto; 
+    gap: 10px;
 }
 
 .mainContent {
     flex: 2;
     padding-right: 10px;
+    margin-right: 5px;
 }
 
 .rightSidebar {
@@ -17,25 +17,14 @@
     background-color: #f0f0f0;
     border-radius: 8px;
     padding: 10px;
-    position: absolute; 
-    right: 0; 
-    top: 0;
-    height: auto; 
+    max-height: 200px;
+    overflow-y: auto;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
 }
 
 .title {
     font-size: 24px;
     margin-bottom: 10px;
-}
-
-.videoContainer {
-    background-color: #e0e0e0;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10px; 
 }
 
 .playIcon {
@@ -82,4 +71,10 @@
 
 .backButton:hover {
     color: #333;
+}
+
+.incident-image {
+    display: block;
+    margin: 0 auto; 
+    max-width: 100%;
 }

@@ -20,18 +20,18 @@
 
 .incident-list-filters input,
 .incident-list-filters select {
-    padding: 5px; /* 여백을 줄여서 글씨가 가로로 보이도록 조정 */
+    padding: 5px;
     border-radius: 5px;
     border: 1px solid #ccc;
     background-color: white;
     font-size: 14px;
-    min-width: 150px; /* 최소 너비를 설정하여 글씨가 가로로 나오도록 */
+    min-width: 150px;
 }
 
 .search-button {
-    padding: 8px 16px; /* 버튼 박스의 여백을 조정 */
+    padding: 8px 16px;
     border-radius: 5px;
-    background-color: #007bff; /* 파란색 배경 */
+    background-color: #007bff;
     color: white;
     border: none;
     cursor: pointer;
@@ -39,13 +39,13 @@
 }
 
 .search-button:hover {
-    background-color: #0056b3; /* 호버 시 색상 */
+    background-color: #0056b3;
 }
 
 .incident-list-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 8fr));
+    gap: 18px;
     justify-items: center; 
 }
 
