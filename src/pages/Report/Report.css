@@ -19,17 +19,17 @@ h3 {
 }
 
 .controlRow {
-    display: flex; /* 수평으로 배치 */
-    align-items: center; /* 세로 중앙 정렬 */
-    justify-content: center; /* 수평 중앙 정렬 */
-    gap: 10px; /* 요소 간격 */
-    margin-bottom: 20px; /* 아래 여백 */
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
 .dropdownContainer {
     display: flex;
     align-items: center;
-    gap: 5px; /* 레이블과 드롭다운 사이의 간격 */
+    gap: 5px;
 }
 
 .dropdownContainer label {
@@ -44,7 +44,7 @@ select {
     font-size: 16px;
     background-color: #fff;
     cursor: pointer;
-    height: 40px; /* 드롭다운 높이 통일 */
+    height: 40px;
 }
 
 select:focus {
@@ -61,7 +61,7 @@ select:focus {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    height: 40px; /* 버튼 높이 드롭다운과 동일하게 */
+    height: 40px;
 }
 
 .downloadButton:hover {
