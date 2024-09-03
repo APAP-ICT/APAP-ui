@@ -3,18 +3,20 @@ import ReactDOM from 'react-dom/client';
 import {createBrowserRouter, Navigate, Outlet, RouterProvider} from 'react-router-dom';
 import './styles.css';
 import 'rsuite/dist/rsuite.min.css';
-import Sidebar from './components/Sidebar';
-import Header from './components/Header';
-import Dashboard from './pages/Dashboard/Dashboard';
-import LoginPage from './pages/Login/LoginPage';
-import SignupPage from './pages/SignUp/SignupPage';
-import Statistics from './pages/Statistics/Statistics';
-import History from './pages/HistoryRecord/HistoryRecord';
-import HistoryRecordDetail from './pages/HistoryRecord/HistoryRecordDetail';
-import CameraManagement from './pages/CameraManagement/CameraManagement';
-import Report from './pages/Report/Report';
-import ImageUploader from './pages/ImageUploader/ImageUploader';
-import Publisher from './pages/CameraManagement/Publisher.jsx';
+import Sidebar from './components/common/Sidebar.jsx';
+import Header from './components/common/Header.jsx';
+import {
+    CameraManagement,
+    Dashboard,
+    History,
+    HistoryRecordDetail,
+    ImageUploader,
+    LoginPage,
+    Publisher,
+    Report,
+    SignupPage,
+    Statistics
+} from './pages';
 import requestPermission from "./push-notification.js";
 import {registerServiceWorker} from "../public/register-sw.js";
 import NotificationToastComponent from "./components/NotificationToastComponent.jsx";

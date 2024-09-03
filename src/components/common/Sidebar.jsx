@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import '../styles.css';
-import LogoImage from './KakaoTalk_20240829_230245640.png';
+import '../../styles.css';
+import LogoImage from '../../../public/logo.png';
 
 const sidebarItems = [
     { name: '대시보드', path: '/' },

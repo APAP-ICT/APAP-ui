@@ -1,7 +1,6 @@
 import {useEffect, useRef, useState} from 'react';
 import ConnectionStatusComponent from "./ConnectionStatusComponent.jsx";
 import defaultImage from '../assets/loading.png';
-import './SubscriberComponent.css'
 
 const SubscriberComponent = ({locationName}) => {
     const imgRef = useRef(null);
